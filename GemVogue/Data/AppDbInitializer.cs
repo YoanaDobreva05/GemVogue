@@ -57,7 +57,7 @@ namespace GemVogue.Data
 
                 } if (!context.Jewelry.Any())
                 {
-                    context.Jewelry.AddRange(new Jewelry()
+                    context.Jewelry.AddRange(new Jewel()
                     {
                         Name = "Колие Феникс",
                         Description = "Сребърно колие с Феникс." +
@@ -68,12 +68,12 @@ namespace GemVogue.Data
                         "Камъни:кристали цирконий" +
                         "Карат: 925.0",
                         Image = @"\Images\kolie-feniks.jpg",
-                        DateOfPosting = DateTime.Now,
+                        CreatedOn = DateTime.Now,
                         ProducerId = 3,
                         Type = JewelryType.Necklace
 
                     },
-                    new Jewelry()
+                    new Jewel()
                     {
                         Name = "Пръстен със зелен аметист",
                         Description = "Сребърен пръстен с изключително рядка зелена разновидност на скъпоценният камък Аметист." +
@@ -84,11 +84,11 @@ namespace GemVogue.Data
                         "Камъни: скъпоценен камък зелен Аметист" +
                         "Карат: 925.0",
                         Image = @"\Images\prsten-ss-zelen-ametist.jpg",
-                        DateOfPosting = DateTime.Now,
+                        CreatedOn = DateTime.Now,
                         ProducerId = 1,
                         Type = JewelryType.Ring
                     },
-                    new Jewelry()
+                    new Jewel()
                     {
                         Name = "Гривна Звездопад",
                         Description = "Гривна Pandora Moments Звездопад." + "Този продукт е съвместим само с модели от колекция Pandora Moments" + "Карат: 925.0",
@@ -96,11 +96,11 @@ namespace GemVogue.Data
                         "Камъни:Кубичен цирконий, Кристал" +
                         "Карат: 925.0",
                         Image = @"\Images\grivna-zvezdopdad.png",
-                        DateOfPosting = DateTime.Now,
+                        CreatedOn = DateTime.Now,
                         ProducerId = 1,
-                        Type = JewelryType.Braclet
+                        Type = JewelryType.Bracelet
                     },
-                    new Jewelry()
+                    new Jewel()
                     {
                         Name = " Домът на дракона",
                         Description = "Обеци Game of Thrones x Pandora Домът на дракона",
@@ -108,11 +108,11 @@ namespace GemVogue.Data
                         "Камъни:Кристал" +
                         "Карат: 925.0",
                         Image = @"\Images\domut-na-drakona.png",
-                        DateOfPosting = DateTime.Now,
+                        CreatedOn = DateTime.Now,
                         ProducerId = 1,
                         Type = JewelryType.Earring
                     },
-                    new Jewelry()
+                    new Jewel()
                     {
                         Name = "Сребърен пръстен с диаманти от сапфир",
                         Description = "Дамски сребърен пръстен с 18К бяла позлата и създадени диаманти и сапфир.",
@@ -120,20 +120,20 @@ namespace GemVogue.Data
                         "Камъни: Създаден диамант, Създадени Скъпоценни Камъни." +
                         "Карат: 925.0",
                         Image = @"\Images\srebaren-prusten-sudadenid-sapfir.jpeg",
-                        DateOfPosting = DateTime.Now,
+                        CreatedOn = DateTime.Now,
                         ProducerId = 2,
                         Type = JewelryType.Ring
                     },
-                    new Jewelry()
+                    new Jewel()
                     {
                         Name = "Дамска гривна за крак",
                         Description = " Сребърна дамска гривна за крак-класически стил.",
                         Material = "Материал: Сребро" +
                         "Карат: 925.0",
                         Image = @"\Images\damska-grivna-za-krak.jpeg",
-                        DateOfPosting = DateTime.Now,
+                        CreatedOn = DateTime.Now,
                         ProducerId = 1,
-                        Type = JewelryType.Braclet
+                        Type = JewelryType.Bracelet
                     });
                     context.SaveChanges();
                 }

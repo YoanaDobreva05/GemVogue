@@ -14,5 +14,7 @@ namespace GemVogue.Data.Models
 
         [Display(Name = "Биография")]
         public string Bio { get; set; }
+
+        public List<Jewel> Jewels { get; set; } = new List<Jewel>();
     }
 }

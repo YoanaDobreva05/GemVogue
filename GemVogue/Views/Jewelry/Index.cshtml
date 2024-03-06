@@ -1,4 +1,4 @@
-﻿@model List<Jewelry>
+﻿@model List<Jewel>
 
 @{
     ViewData["Title"] = "List of Jewelry";
@@ -7,7 +7,7 @@
 <div class="row">
     @foreach(var item in Model)
     {
-       var days = (DateTime.Now - item.DateOfPosting).Days;
+       var days = (DateTime.Now - item.CreatedOn).Days;
        <div class="col-md-4 col-xs-6 border-primary mb-3"> 
            <div class="card-mb-3" style="max-width:540px"> 
                <div class="row g-0">
@@ -29,7 +29,7 @@
                            <p class="card-text">@item.Description.Substring(0, 45)...</p>
                            <p class="card-text"><b>Производител:</b> @item.Producer.FullName</p>
                            <p class="card-text"><b>Категория:</b>@item.Type</p>
-                           <p class="card-text"><b>Дата на публикуване:</b>@item.DateOfPosting.ToString("dd.MM.yyyy г.")</p>
+                           <p class="card-text"><b>Дата на публикуване:</b>@item.CreatedOn.ToString("dd.MM.yyyy г.")</p>
                            <b>Качено:</b>
                            
                                 <span class="badge bg-success text-white">Преди: @days дни</span>
