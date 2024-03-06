@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Producer>
+
+@{
+    ViewData["Title"] = "List of Producers";
+}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+      
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model=>model.ProfilePicture)</th>
+                    <th>@Html.DisplayNameFor(model=>model.FullName)</th>
+                    <th>@Html.DisplayNameFor(model=>model.Bio)</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="align-middle">
+                            <img class="rounded-circle" src="@item.ProfilePicture"alt="@item.FullName"style="max-width:150px"/>
+                        </td>
+                        <td class="align-middle">
+                            @Html.DisplayFor(modelItem=>item.FullName)
+                        </td>
+                        <td class="align-middle">
+                            @Html.DisplayFor(modelItem => item.Bio)
+                        </td>
+                        <td class="align-middle d-flex gap-1" >
+                            <a class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i> Редактиране</a>
+                            <a class="btn btn-outline-info"><i class="bi bi-eye"></i> Детайли</a>
+                            <a class="btn btn-danger"><i class="bi bi-trash"></i> Изтриване</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+           
+
+        </table>
+
+    </div>
+</div>
