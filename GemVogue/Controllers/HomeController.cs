@@ -4,13 +4,17 @@ using System.Diagnostics;
 
 namespace GemVogue.Controllers
 {
+    using Data;
+    using Data.Models;
+    using Models.Messages;
+
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly GemVogueDbContext data;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(GemVogueDbContext data)
         {
-            _logger = logger;
+            this.data = data;
         }
 
         public IActionResult Index() 
@@ -21,6 +25,23 @@ namespace GemVogue.Controllers
 
         public IActionResult Contacts() 
             => View();
+
+        [HttpPost]
+        public IActionResult Contact(CreateMessageInputModel input)
+        {
+            var message = new Message()
+            {
+                Name = input.Name,
+                Email = input.Email,
+                Subject = input.Subject,
+                Content = input.Content
+            };
+
+            this.data.Add(message);
+            this.data.SaveChanges();
+
+            return RedirectToAction("Contacts");
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

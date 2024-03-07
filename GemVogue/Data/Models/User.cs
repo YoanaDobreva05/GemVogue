@@ -4,6 +4,8 @@
 
     public class User : IdentityUser
     {
+        public string Name { get; set; }
+
         public List<Favorite> Favorites { get; set; } = new List<Favorite>();
     }
 }
