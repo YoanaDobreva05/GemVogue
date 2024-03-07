@@ -1,15 +1,20 @@
 using GemVogue.Data;
 using GemVogue.Data.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<GemVogueDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
 builder.Services
-    .AddIdentity<User, IdentityRole>()
+    .AddDbContext<GemVogueDbContext>(options => 
+        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")))
+    .AddDefaultIdentity<User>(options =>
+    {
+        options.SignIn.RequireConfirmedAccount = false;
+        options.Password.RequireDigit = true;
+        options.Password.RequireUppercase = true;
+        options.Password.RequireLowercase = true;
+        options.Password.RequireNonAlphanumeric = true;
+    })
     .AddEntityFrameworkStores<GemVogueDbContext>();
 
 builder.Services.AddRazorPages();
@@ -23,13 +28,12 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-
-app.UseRouting();
-
-app.UseAuthentication();
-app.UseAuthorization();
+app
+    .UseHttpsRedirection()
+    .UseStaticFiles()
+    .UseRouting()
+    .UseAuthentication()
+    .UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
