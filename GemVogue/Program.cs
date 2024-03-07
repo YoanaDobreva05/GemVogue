@@ -1,5 +1,6 @@
 using GemVogue.Data;
 using GemVogue.Data.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,7 @@ builder.Services
         options.Password.RequireLowercase = true;
         options.Password.RequireNonAlphanumeric = true;
     })
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<GemVogueDbContext>();
 
 builder.Services.AddRazorPages();
@@ -40,7 +42,5 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapRazorPages();
-
-AppDbInitializer.Seed(app);
 
 app.Run();

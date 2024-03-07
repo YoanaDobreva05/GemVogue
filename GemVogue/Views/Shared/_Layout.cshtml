@@ -61,6 +61,10 @@
                                         </li>
                                         <li><a asp-controller="Home" asp-action="About">За нас</a></li>
                                         <li><a asp-controller="Home" asp-action="Contacts">Контакти</a></li>
+                                        @if (this.User.IsInRole("Administrator"))
+                                        {
+                                            <li><a asp-controller="Home" asp-action="Contacts">Администрация</a></li>
+                                        }
                                     </ul>
                                 </nav>
                             </div>
@@ -83,9 +87,11 @@
                                         }
                                         else
                                         {
-                                            <div class="card-stor"> 
-                                                <span>Влез</span>
-                                            </div>
+                                            <a asp-area="Identity" asp-page="/Account/Login">
+                                                <div class="card-stor"> 
+                                                    <span>Влез</span>
+                                                </div>
+                                            </a>
                                         }
                                     </li>
                                 </ul>
