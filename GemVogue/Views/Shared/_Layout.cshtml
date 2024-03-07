@@ -74,10 +74,19 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <div class="card-stor">
-                                            <i class="fa-solid fa-heart"></i>
-                                            <span>3</span>
-                                        </div>
+                                        @if (this.User.Identity.IsAuthenticated)
+                                        {
+                                            <div class="card-stor">
+                                                <i class="fa fa-heart"></i>
+                                                <span>0</span>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="card-stor"> 
+                                                <span>Влез</span>
+                                            </div>
+                                        }
                                     </li>
                                 </ul>
                             </div>
