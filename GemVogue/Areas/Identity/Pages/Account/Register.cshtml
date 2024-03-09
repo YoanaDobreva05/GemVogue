@@ -1,35 +1,59 @@
 ﻿@page
 @model RegisterModel
 
-<h1>Регистрация</h1>
-
-<div class="row">
-    <div class="col-md-4">
-        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h2>Създай нов акаунт.</h2>
-            <hr />
-            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.Name" class="form-control" autocomplete="username" aria-required="true" />
-                <label asp-for="Input.Name">Име</label>
-                <span asp-validation-for="Input.Name" class="text-danger"></span>
+<section class="contact-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12">
+                <h2 class="contact-title">Регистрирай се</h2>
             </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
-                <label asp-for="Input.Email">Имейл</label>
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            <div class="col-lg-6">
+                <form class="form-contact contact_form" method="post" id="registerForm">
+                    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <input class="form-control" asp-for="Input.Name" name="name" id="name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Име'" placeholder="Въведи име">
+                                <span asp-validation-for="Input.Name" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <input class="form-control" asp-for="Input.Email" name="email" id="email" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Имейл'" placeholder="Въведи имейл">
+                                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <input class="form-control" asp-for="Input.Password" name="password" id="password" type="password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Парола'" placeholder="Въведи парола">
+                                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <input class="form-control" asp-for="Input.ConfirmPassword" name="confirmPassword" id="confirmPassword" type="password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Повтори парола'" placeholder="Повтори парола">
+                                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <p class="text-dark">Вече имаш профил? <a class="text-primary underlined" asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">Влез в него</a>.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group mt-3">
+                        <button type="submit" class="button button-contactForm boxed-btn">Регистрирай се</button>
+                    </div>
+                </form>
             </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
-                <label asp-for="Input.Password">Парола</label>
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
-                <label asp-for="Input.ConfirmPassword">Потвърди парола</label>
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Регистрирай се</button>
-        </form>
+        </div>
     </div>
-</div>
+</section>
