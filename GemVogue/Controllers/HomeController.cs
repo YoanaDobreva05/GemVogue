@@ -23,7 +23,7 @@ namespace GemVogue.Controllers
         public IActionResult About() 
             => View();
 
-        public IActionResult Contacts() 
+        public IActionResult Contacts()
             => View();
 
         [HttpPost]

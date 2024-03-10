@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace GemVogue.Controllers;
+﻿namespace GemVogue.Controllers;
 
 using Data;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Models.Messages;
 
 public class AdministrationController : Controller

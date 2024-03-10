@@ -30,15 +30,15 @@ namespace GemVogue.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Bio")
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FullName")
+                    b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ProfilePicture")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -50,23 +50,23 @@ namespace GemVogue.Data.Migrations
                         new
                         {
                             Id = 1,
-                            Bio = "Магазина предлага изключителна селекция висококачествени бижута от подбрани колекции за да удовлетворим нуждите на тези, които вярват, че бижутата не са просто аксесоар. При нас всеки може да намери перфектното бижу,с което да зарадва себе си, да изненада любим човек или да впечатли с подарък, който ще привлече погледите на всички.Освен сертификат за автентичност можете да видите знака ALE щампован на нашите бижута, с изключение само на най-малките ни елементи. Еквивалентът във Великобритания е знакът на спонсора, а в Дания – знак на отговорност.Нашето стерлингово сребро е маркирано с главно S за сребро, последвано от чистотата на среброто, която е цитирана като единици чисто сребро на хиляда: S925 (92.5% чисто сребро).",
-                            FullName = "Pandora",
-                            ProfilePicture = "\\Images\\pandora-logo.png"
+                            Description = "Магазина предлага изключителна селекция висококачествени бижута от подбрани колекции за да удовлетворим нуждите на тези, които вярват, че бижутата не са просто аксесоар. При нас всеки може да намери перфектното бижу,с което да зарадва себе си, да изненада любим човек или да впечатли с подарък, който ще привлече погледите на всички.Освен сертификат за автентичност можете да видите знака ALE щампован на нашите бижута, с изключение само на най-малките ни елементи. Еквивалентът във Великобритания е знакът на спонсора, а в Дания – знак на отговорност.Нашето стерлингово сребро е маркирано с главно S за сребро, последвано от чистотата на среброто, която е цитирана като единици чисто сребро на хиляда: S925 (92.5% чисто сребро).",
+                            ImageUrl = "\\Images\\pandora-logo.png",
+                            Name = "Pandora"
                         },
                         new
                         {
                             Id = 2,
-                            Bio = "Официалните бижутата са подходящи за различни поводи, като сватби, юбилеи, балове, приеми и други. Можете да избирате между разнообразие от модели и стилове, които отговарят на вашите предпочитания и тоалет. Независимо дали предпочитате класически или модерни дизайни, бижутата Victoria Princess ще ви очароват със своята красота и изящество.Официалните бижута са не само прекрасен аксесоар, но и ценен подарък за любим човек. Ако искате да изненадате вашата половинка, майка, сестра или приятелка с нещо специално, можете да изберете бижу от нашата колекцията, което ще говори вместо вас за вашите чувства и уважение. Бижутата Victoria Princess са символ на любов, приятелство и лоялност.",
-                            FullName = "Victoria Princess",
-                            ProfilePicture = "\\Images\\victoria princess-logo.png"
+                            Description = "Официалните бижутата са подходящи за различни поводи, като сватби, юбилеи, балове, приеми и други. Можете да избирате между разнообразие от модели и стилове, които отговарят на вашите предпочитания и тоалет. Независимо дали предпочитате класически или модерни дизайни, бижутата Victoria Princess ще ви очароват със своята красота и изящество.Официалните бижута са не само прекрасен аксесоар, но и ценен подарък за любим човек. Ако искате да изненадате вашата половинка, майка, сестра или приятелка с нещо специално, можете да изберете бижу от нашата колекцията, което ще говори вместо вас за вашите чувства и уважение. Бижутата Victoria Princess са символ на любов, приятелство и лоялност.",
+                            ImageUrl = "\\Images\\victoria princess-logo.png",
+                            Name = "Victoria Princess"
                         },
                         new
                         {
                             Id = 3,
-                            Bio = "GOTO порасна, отвори магазин и в Испания, а с годините се превърна в наложена марка, символ на разнообразие, качество и класа, на която повече от 20 000 лоялни клиенти се довериха. Огромна привилегия и чест, носеща със себе си сериозна отговорност. Тя ни задължава да продължаваме да се усъвършенстваме, за да сбъднем нашата мисия и най-голяма мечта – името на GOTO да се свързва с любовта, обичта и топлия спомен, облечени в качество и стил на световно ниво.",
-                            FullName = "Goto",
-                            ProfilePicture = "\\Images\\goto-logo.jpg"
+                            Description = "GOTO порасна, отвори магазин и в Испания, а с годините се превърна в наложена марка, символ на разнообразие, качество и класа, на която повече от 20 000 лоялни клиенти се довериха. Огромна привилегия и чест, носеща със себе си сериозна отговорност. Тя ни задължава да продължаваме да се усъвършенстваме, за да сбъднем нашата мисия и най-голяма мечта – името на GOTO да се свързва с любовта, обичта и топлия спомен, облечени в качество и стил на световно ниво.",
+                            ImageUrl = "\\Images\\goto-logo.jpg",
+                            Name = "Goto"
                         });
                 });
 
@@ -103,7 +103,7 @@ namespace GemVogue.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Image")
+                    b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -129,9 +129,9 @@ namespace GemVogue.Data.Migrations
                         {
                             Id = 1,
                             BrandId = 3,
-                            CreatedOn = new DateTime(2024, 3, 10, 14, 43, 8, 377, DateTimeKind.Local).AddTicks(3711),
+                            CreatedOn = new DateTime(2024, 3, 10, 18, 56, 38, 380, DateTimeKind.Local).AddTicks(8716),
                             Description = "Сребърно колие с Феникс.Феникса е символ на унищожаване на старият и начало на новият по-добър живот.Размер на синджира: с регулиране от 42 до 45 смРазмер на феникса: 22x20 мм",
-                            Image = "\\Images\\kolie-feniks.jpg",
+                            ImageUrl = "\\Images\\kolie-feniks.jpg",
                             Material = "Материал: Сребро, Камъни: кристали цирконийКарат: 925.0",
                             Name = "Колие Феникс",
                             Type = 1
@@ -140,9 +140,9 @@ namespace GemVogue.Data.Migrations
                         {
                             Id = 2,
                             BrandId = 1,
-                            CreatedOn = new DateTime(2024, 3, 10, 14, 43, 8, 377, DateTimeKind.Local).AddTicks(3717),
+                            CreatedOn = new DateTime(2024, 3, 10, 18, 56, 38, 380, DateTimeKind.Local).AddTicks(8766),
                             Description = "Сребърен пръстен с изключително рядка зелена разновидност на скъпоценният камък Аметист.Произход на камъка Бразилия.Вярва се, че бижутата от аметист помагат на притежателя си да очарова хората около себе си, като засилва харизматичното му излъчване.Размер на камъка: 8x6 мм, 2,3 cм",
-                            Image = "\\Images\\prsten-ss-zelen-ametist.jpg",
+                            ImageUrl = "\\Images\\prsten-ss-zelen-ametist.jpg",
                             Material = "Материал: СреброКамъни: скъпоценен камък зелен АметистКарат: 925.0",
                             Name = "Пръстен със зелен аметист",
                             Type = 2
@@ -151,9 +151,9 @@ namespace GemVogue.Data.Migrations
                         {
                             Id = 3,
                             BrandId = 1,
-                            CreatedOn = new DateTime(2024, 3, 10, 14, 43, 8, 377, DateTimeKind.Local).AddTicks(3722),
+                            CreatedOn = new DateTime(2024, 3, 10, 18, 56, 38, 380, DateTimeKind.Local).AddTicks(8769),
                             Description = "Гривна Pandora Moments Звездопад.Този продукт е съвместим само с модели от колекция Pandora MomentsКарат: 925.0",
-                            Image = "\\Images\\grivna-zvezdopdad.png",
+                            ImageUrl = "\\Images\\grivna-zvezdopdad.png",
                             Material = "Материал :СреброКамъни: Кубичен цирконий, КристалКарат: 925.0",
                             Name = "Гривна Звездопад",
                             Type = 3
@@ -162,9 +162,9 @@ namespace GemVogue.Data.Migrations
                         {
                             Id = 4,
                             BrandId = 1,
-                            CreatedOn = new DateTime(2024, 3, 10, 14, 43, 8, 377, DateTimeKind.Local).AddTicks(3727),
+                            CreatedOn = new DateTime(2024, 3, 10, 18, 56, 38, 380, DateTimeKind.Local).AddTicks(8774),
                             Description = "Обеци Game of Thrones x Pandora Домът на дракона",
-                            Image = "\\Images\\domut-na-drakona.png",
+                            ImageUrl = "\\Images\\domut-na-drakona.png",
                             Material = "Материал :СреброКамъни:КристалКарат: 925.0",
                             Name = " Домът на дракона",
                             Type = 4
@@ -173,9 +173,9 @@ namespace GemVogue.Data.Migrations
                         {
                             Id = 5,
                             BrandId = 2,
-                            CreatedOn = new DateTime(2024, 3, 10, 14, 43, 8, 377, DateTimeKind.Local).AddTicks(3731),
+                            CreatedOn = new DateTime(2024, 3, 10, 18, 56, 38, 380, DateTimeKind.Local).AddTicks(8776),
                             Description = "Дамски сребърен пръстен с 18К бяла позлата и създадени диаманти и сапфир.",
-                            Image = "\\Images\\srebaren-prusten-sudadenid-sapfir.jpeg",
+                            ImageUrl = "\\Images\\srebaren-prusten-sudadenid-sapfir.jpeg",
                             Material = "Материал:СреброКамъни: Създаден диамант, Създадени Скъпоценни Камъни.Карат: 925.0",
                             Name = "Сребърен пръстен с диаманти от сапфир",
                             Type = 2
@@ -184,9 +184,9 @@ namespace GemVogue.Data.Migrations
                         {
                             Id = 6,
                             BrandId = 1,
-                            CreatedOn = new DateTime(2024, 3, 10, 14, 43, 8, 377, DateTimeKind.Local).AddTicks(3735),
+                            CreatedOn = new DateTime(2024, 3, 10, 18, 56, 38, 380, DateTimeKind.Local).AddTicks(8779),
                             Description = " Сребърна дамска гривна за крак-класически стил.",
-                            Image = "\\Images\\damska-grivna-za-krak.jpeg",
+                            ImageUrl = "\\Images\\damska-grivna-za-krak.jpeg",
                             Material = "Материал: СреброКарат: 925.0",
                             Name = "Дамска гривна за крак",
                             Type = 3
@@ -293,18 +293,18 @@ namespace GemVogue.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "22902e83-535b-418a-aafb-312d477c6a54",
+                            Id = "41dde345-cc88-41c1-89c2-44ff9c7bd729",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6f002996-4d2f-42e3-835c-a70dff3c636c",
+                            ConcurrencyStamp = "302d3a19-b866-474b-b8f7-e51ade3ffada",
                             Email = "admin@gemvogue.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Name = "Администратор",
                             NormalizedEmail = "ADMIN@GEMVOGUE.COM",
                             NormalizedUserName = "ADMIN@GEMVOGUE.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEcfRKbJOqvw1k9Up+aiAT2neI7LLesvErL91P75D4RhBmtnRIF1ueH69COX9bMuIA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEONjC2iuMmYnHW3ud0vQ9xjxeXoWlKEcduWzb3Ivx4Bh65riAM1MmXrDaX6Ci87v7A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "530f75b5-394f-4d04-a5ab-b3ac1f7d291f",
+                            SecurityStamp = "1125a5fa-7672-4313-b267-fd4f619a2afa",
                             TwoFactorEnabled = false,
                             UserName = "admin@gemvogue.com"
                         });
@@ -339,8 +339,8 @@ namespace GemVogue.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "2a83ab8f-690c-48ee-9d9e-3c618b540d10",
-                            ConcurrencyStamp = "2a83ab8f-690c-48ee-9d9e-3c618b540d10",
+                            Id = "8e4b72d1-a0cf-43c7-837a-22543f3c1745",
+                            ConcurrencyStamp = "8e4b72d1-a0cf-43c7-837a-22543f3c1745",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -437,8 +437,8 @@ namespace GemVogue.Data.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "22902e83-535b-418a-aafb-312d477c6a54",
-                            RoleId = "2a83ab8f-690c-48ee-9d9e-3c618b540d10"
+                            UserId = "41dde345-cc88-41c1-89c2-44ff9c7bd729",
+                            RoleId = "8e4b72d1-a0cf-43c7-837a-22543f3c1745"
                         });
                 });
 

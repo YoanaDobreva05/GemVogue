@@ -3,125 +3,135 @@ using GemVogue.Models.Brands;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using GemVogue.Data.Models;
-using Microsoft.AspNetCore.Hosting;
+using GemVogue.Models.Jewelry;
 
-namespace GemVogue.Controllers
+namespace GemVogue.Controllers;
+
+public class BrandsController : Controller
 {
-    public class BrandsController : Controller
+    private readonly GemVogueDbContext data;
+    private readonly IWebHostEnvironment env;
+
+    public BrandsController(
+        GemVogueDbContext data,
+        IWebHostEnvironment env)
     {
-        private readonly GemVogueDbContext data;
-        private readonly IWebHostEnvironment env;
-
-        public BrandsController(
-            GemVogueDbContext data,
-            IWebHostEnvironment env)
-        {
-            this.data = data;
-            this.env = env;
-        }
+        this.data = data;
+        this.env = env;
+    }
         
-        [HttpGet]
-        public IActionResult All()
+    [HttpGet]
+    public IActionResult All()
+    {
+        var brands = this.data.Brands.ToList();
+
+        return View(brands);
+    }
+
+    [HttpGet]
+    public IActionResult Details(int id)
+    {
+        var brand = this.data.Brands
+            .Where(b => b.Id == id)
+            .Select(b => new BrandDetailsOutputModel()
+            {
+                Id = b.Id,
+                Name = b.Name,
+                Description = b.Description,
+                ImageUrl = b.ImageUrl
+            })
+            .FirstOrDefault();
+
+        return View(brand);
+    }
+
+    [HttpGet]
+    [Authorize(Roles = "Administrator")]
+    public IActionResult Add()
+        => View();
+
+    [HttpPost]
+    [Authorize(Roles = "Administrator")]
+    public IActionResult Create(CreateJewelInputModel input)
+    { 
+        using var fileStream = new FileStream(
+            Path.Combine(
+                this.env.WebRootPath,
+                "Images",
+                input.Image.FileName), 
+            FileMode.Create);
+
+        input.Image.CopyTo(fileStream);
+
+        var brand = new Brand()
         {
-            var brands = this.data.Brands.ToList();
+            Name = input.Name,
+            Description = input.Description,
+            ImageUrl = @"\Images\" + input.Image.FileName,
+        };
 
-            return View(brands);
-        }
+        this.data.Add(brand);
+        this.data.SaveChanges();
 
-        [HttpGet]
-        public IActionResult Details(int id)
+        return RedirectToAction("All");
+    }
+
+    [HttpGet]
+    [Authorize(Roles = "Administrator")]
+    public IActionResult Edit(int id)
+    {
+        var brand = this.data.Brands
+            .Where(b => b.Id == id)
+            .Select(b => new BrandDetailsOutputModel()
+            {
+                Id = b.Id,
+                Name = b.Name,
+                Description = b.Description,
+                ImageUrl = b.ImageUrl
+            })
+            .FirstOrDefault();
+
+        return View(brand);
+    }
+
+    [HttpPost]
+    [Authorize(Roles = "Administrator")]
+    public IActionResult Update(int id, BrandDetailsOutputModel input)
+    {
+        var brand = this.data.Brands
+            .Single(b => b.Id == id);
+
+        brand.Name = input.Name;
+        brand.Description = input.Description;
+
+        if (input.Image != null)
         {
-            var brand = this.data.Brands
-                .Where(b => b.Id == id)
-                .Select(b => new BrandDetailsOutputModel()
-                {
-                    Id = b.Id,
-                    FullName = b.FullName,
-                    Bio = b.Bio,
-                    ProfilePicture = b.ProfilePicture
-                })
-                .FirstOrDefault();
-
-            return View(brand);
-        }
-
-        [HttpGet]
-        [Authorize(Roles = "Administrator")]
-        public IActionResult Add()
-            => View();
-
-        [HttpPost]
-        [Authorize(Roles = "Administrator")]
-        public IActionResult Create(CreateBrandInputModel input)
-        { 
             using var fileStream = new FileStream(
                 Path.Combine(
                     this.env.WebRootPath,
                     "Images",
-                    input.ProfilePicture.FileName), 
+                    input.Image.FileName),
                 FileMode.Create);
 
-            input.ProfilePicture.CopyTo(fileStream);
+            input.Image.CopyTo(fileStream);
 
-            var brand = new Brand()
-            {
-                FullName = input.Name,
-                Bio = input.Bio,
-                ProfilePicture = @"\Images\" + input.ProfilePicture.FileName,
-            };
-
-            this.data.Add(brand);
-            this.data.SaveChanges();
-
-            return RedirectToAction("All");
+            brand.ImageUrl = @"\Images\" + input.Image.FileName;
         }
 
-        [HttpGet]
-        [Authorize(Roles = "Administrator")]
-        public IActionResult Edit(int id)
-        {
-            var brand = this.data.Brands
-                .Where(b => b.Id == id)
-                .Select(b => new BrandDetailsOutputModel()
-                {
-                    Id = b.Id,
-                    FullName = b.FullName,
-                    Bio = b.Bio,
-                    ProfilePicture = b.ProfilePicture
-                })
-                .FirstOrDefault();
+        this.data.SaveChanges();
 
-            return View(brand);
-        }
+        return RedirectToAction("All");
+    }
 
-        [HttpPost]
-        [Authorize(Roles = "Administrator")]
-        public IActionResult Update(BrandDetailsOutputModel input)
-        {
-            var brand = this.data.Brands
-                .Single(b => b.Id == input.Id);
+    [HttpPost]
+    [Authorize(Roles = "Administrator")]
+    public IActionResult Delete(int id)
+    {
+        var brand = this.data.Brands.Single(b => b.Id == id);
 
-            brand.FullName = input.FullName;
-            brand.Bio = input.Bio;
+        this.data.Brands.Remove(brand);
+        this.data.SaveChanges();
 
-            if (input.ProfilePicture != null)
-            {
-                
-            }
-
-            return RedirectToAction("All");
-        }
-
-        [HttpPost]
-        [Authorize(Roles = "Administrator")]
-        public IActionResult Delete(int id)
-        {
-            var brand = this.data.Brands.Single(b => b.Id == id);
-
-            this.data.Brands.Remove(brand);
-            this.data.SaveChanges();
-
-            return RedirectToAction("All");
-        }
+        return RedirectToAction("All");
     }
 }

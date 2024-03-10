@@ -1,20 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿namespace GemVogue.Data.Models;
 
-namespace GemVogue.Data.Models
+public class Brand
 {
-    public class Brand
-    {
-        public int Id { get; set; }
+    public int Id { get; set; }
 
-        [Display(Name = "Профилна снимка")]
-        public string ProfilePicture { get; set; }
+    public string Name { get; set; }
 
-        [Display(Name = "Име")]
-        public string FullName { get; set; }
+    public string Description { get; set; }
 
-        [Display(Name = "Биография")]
-        public string Bio { get; set; }
+    public string ImageUrl { get; set; }
 
-        public List<Jewel> Jewels { get; set; } = new List<Jewel>();
-    }
+    public List<Jewel> Jewels { get; set; } = new ();
 }

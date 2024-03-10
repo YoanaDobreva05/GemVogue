@@ -1,23 +1,19 @@
-﻿using GemVogue.Data;
+﻿namespace GemVogue.Controllers;
+
+using Data;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
-namespace GemVogue.Controllers
+public class JewelryController : Controller
 {
-    public class JewelryController : Controller
+    private readonly GemVogueDbContext data;
+    private readonly IWebHostEnvironment env;
+
+    public JewelryController(
+        GemVogueDbContext data,
+        IWebHostEnvironment env)
     {
-        private readonly GemVogueDbContext _context;
-
-        public JewelryController(GemVogueDbContext context)
-        {
-            _context = context;
-        }
-
-        public async Task<IActionResult> Index()
-        {
-            var allJewelry = await _context.Jewelry
-                .Include(j => j.Brand).ToListAsync();
-            return View(allJewelry);
-        }
+        this.data = data;
+        this.env = env;
     }
+
 }

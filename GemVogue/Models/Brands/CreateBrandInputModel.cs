@@ -1,11 +1,10 @@
-﻿namespace GemVogue.Models.Brands
+﻿namespace GemVogue.Models.Brands;
+
+public class CreateBrandInputModel
 {
-    public class CreateBrandInputModel
-    {
-        public IFormFile ProfilePicture { get; set; }
+    public string Name { get; set; }
 
-        public string Name { get; set; }
+    public string Description { get; set; }
 
-        public string Bio { get; set; }
-    }
+    public IFormFile Image { get; set; }
 }
