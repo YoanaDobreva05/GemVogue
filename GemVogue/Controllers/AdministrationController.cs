@@ -3,6 +3,7 @@
 namespace GemVogue.Controllers;
 
 using Data;
+using Microsoft.AspNetCore.Authorization;
 using Models.Messages;
 
 public class AdministrationController : Controller
@@ -14,6 +15,8 @@ public class AdministrationController : Controller
         this.data = data;
     }
 
+    [HttpGet]
+    [Authorize(Roles = "Administrator")]
     public IActionResult Messages()
     {
         var messages = this.data.Messages

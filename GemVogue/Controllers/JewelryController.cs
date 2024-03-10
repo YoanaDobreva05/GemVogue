@@ -15,7 +15,8 @@ namespace GemVogue.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var allJewelry = await _context.Jewelry.Include(j => j.Producer).ToListAsync();
+            var allJewelry = await _context.Jewelry
+                .Include(j => j.Brand).ToListAsync();
             return View(allJewelry);
         }
     }

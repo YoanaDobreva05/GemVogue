@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations.Schema;
 using GemVogue.Data.Enums;
 
 namespace GemVogue.Data.Models
@@ -23,9 +22,9 @@ namespace GemVogue.Data.Models
 
         public string Image { get; set; }
 
-        public int ProducerId { get; set; }
+        public int BrandId { get; set; }
 
-        public Producer Producer { get; set; }
+        public Brand Brand { get; set; }
 
         public List<Favorite> Favorites { get; set; } = new List<Favorite>();
     }

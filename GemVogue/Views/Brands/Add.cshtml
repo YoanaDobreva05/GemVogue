@@ -1,0 +1,50 @@
+﻿@model GemVogue.Models.Brands.CreateBrandInputModel
+
+<div class="page-notification page-notification2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item">Администрация</li>
+                        <li class="breadcrumb-item"><a asp-action="All">Производители</a></li>
+                        <li class="breadcrumb-item">Добави</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="contact-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <h2 class="contact-title">Създай производител</h2>
+            </div>
+            <div class="col-6">
+                <form class="form-contact contact_form" method="post"asp-action="Create" id="contactForm" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <input class="form-control valid" asp-for="Name" name="name" id="name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Въведи име'" placeholder="Въведи име">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <input class="form-control" asp-for="ProfilePicture" name="profilePicture" id="profilePicture" type="file" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Избери файл'" placeholder="Избери файл">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <textarea class="form-control w-100" asp-for="Bio" name="bio" id="bio" cols="30" rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Въведи описание'" placeholder=" Въведи описание"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group mt-3">
+                        <button type="submit" class="button button-contactForm boxed-btn">Изпрати</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

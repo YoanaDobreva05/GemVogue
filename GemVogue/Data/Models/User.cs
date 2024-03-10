@@ -1,7 +1,7 @@
-﻿namespace GemVogue.Data.Models
-{
-    using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 
+namespace GemVogue.Data.Models
+{
     public class User : IdentityUser
     {
         public string Name { get; set; }

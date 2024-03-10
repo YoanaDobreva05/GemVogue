@@ -13,7 +13,7 @@ namespace GemVogue.Data
         {
         }
 
-        public DbSet<Producer> Producers { get; set; }
+        public DbSet<Brand> Brands { get; set; }
 
         public DbSet<Favorite> Favorites { get; set; }
 
@@ -26,9 +26,9 @@ namespace GemVogue.Data
             base.OnModelCreating(builder);
 
             builder.Entity<Jewel>()
-                .HasOne(j => j.Producer)
+                .HasOne(j => j.Brand)
                 .WithMany(p => p.Jewels)
-                .HasForeignKey(j => j.ProducerId)
+                .HasForeignKey(j => j.BrandId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<Favorite>()
@@ -83,9 +83,9 @@ namespace GemVogue.Data
                     RoleId = roleId
                 });
 
-            builder.Entity<Producer>()
+            builder.Entity<Brand>()
                 .HasData(
-                    new Producer() 
+                    new Brand() 
                     {
                         Id = 1,
                         FullName = "Pandora",
@@ -100,7 +100,7 @@ namespace GemVogue.Data
                             " която е цитирана като единици чисто сребро на хиляда: S925 (92.5% чисто сребро).",
                         ProfilePicture = @"\Images\pandora-logo.png"
                     }, 
-                    new Producer()
+                    new Brand()
                     {
                         Id = 2,
                         FullName = "Victoria Princess",
@@ -113,7 +113,7 @@ namespace GemVogue.Data
                         "Бижутата Victoria Princess са символ на любов, приятелство и лоялност.",
                         ProfilePicture = @"\Images\victoria princess-logo.png"
                     },
-                    new Producer()
+                    new Brand()
                     {
                         Id = 3,
                         FullName = "Goto",
@@ -140,7 +140,7 @@ namespace GemVogue.Data
                             "Карат: 925.0",
                         Image = @"\Images\kolie-feniks.jpg",
                         CreatedOn = DateTime.Now,
-                        ProducerId = 3,
+                        BrandId = 3,
                         Type = JewelryType.Necklace
 
                     },
@@ -157,7 +157,7 @@ namespace GemVogue.Data
                         "Карат: 925.0",
                         Image = @"\Images\prsten-ss-zelen-ametist.jpg",
                         CreatedOn = DateTime.Now,
-                        ProducerId = 1,
+                        BrandId = 1,
                         Type = JewelryType.Ring
                     },
                     new Jewel()
@@ -170,7 +170,7 @@ namespace GemVogue.Data
                         "Карат: 925.0",
                         Image = @"\Images\grivna-zvezdopdad.png",
                         CreatedOn = DateTime.Now,
-                        ProducerId = 1,
+                        BrandId = 1,
                         Type = JewelryType.Bracelet
                     },
                     new Jewel()
@@ -183,7 +183,7 @@ namespace GemVogue.Data
                         "Карат: 925.0",
                         Image = @"\Images\domut-na-drakona.png",
                         CreatedOn = DateTime.Now,
-                        ProducerId = 1,
+                        BrandId = 1,
                         Type = JewelryType.Earring
                     },
                     new Jewel()
@@ -196,7 +196,7 @@ namespace GemVogue.Data
                         "Карат: 925.0",
                         Image = @"\Images\srebaren-prusten-sudadenid-sapfir.jpeg",
                         CreatedOn = DateTime.Now,
-                        ProducerId = 2,
+                        BrandId = 2,
                         Type = JewelryType.Ring
                     },
                     new Jewel()
@@ -208,7 +208,7 @@ namespace GemVogue.Data
                         "Карат: 925.0",
                         Image = @"\Images\damska-grivna-za-krak.jpeg",
                         CreatedOn = DateTime.Now,
-                        ProducerId = 1,
+                        BrandId = 1,
                         Type = JewelryType.Bracelet
                     });
         }

@@ -1,0 +1,63 @@
+﻿@model GemVogue.Models.Brands.BrandDetailsOutputModel
+
+<div class="page-notification">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Начало</a></li>
+                        <li class="breadcrumb-item"><a asp-controller="Brands" asp-action="All">Производители</a></li>
+                        <li class="breadcrumb-item">@Model.FullName</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="directory-details pt-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="small-tittle mb-20">
+                    <h1>@Model.FullName</h1>
+                    <a asp-action="Edit" asp-route-id="@Model.Id"><span class="text-warning">Редактирай</span></a>
+                    
+                </div>
+                <div class="directory-cap mb-40">
+                    <p>@Model.Bio</p>
+                </div>
+                @if (Model.Jewels.Any())
+                {
+                    <div class="small-tittle mb-20">
+                        <h2>Артикули</h2>
+                    </div>
+                }
+                
+                <div class="gallery-img">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <img src="assets/img/gallery/gallery2.png" class="mb-30" alt="">
+                        </div>
+                        <div class="col-lg-6">
+                            <img src="assets/img/gallery/gallery3.png" class="mb-30" alt="">
+                        </div>
+                        <div class="col-lg-6">
+                            <img src="assets/img/gallery/gallery4.png" class="mb-30" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="map">
+                    <img src="@Model.ProfilePicture" alt="">
+                </div>
+                
+                <form class="m-5" method="post" asp-action="Delete" asp-route-id="@Model.Id">
+                    <button type="submit" class="btn btn-danger">Изтрий</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

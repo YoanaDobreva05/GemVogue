@@ -1,5 +1,5 @@
 ﻿<!doctype html>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="bg">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -61,13 +61,25 @@
                                                 <li><a asp-controller="Home" asp-action="Index">Колиета</a></li>
                                                 <li><a asp-controller="Home" asp-action="Index">Пръстени</a></li>
                                                 <li><a asp-controller="Home" asp-action="Index">Обеци</a></li>
+                                                <li><a asp-controller="Brands" asp-action="All">Производители</a></li>
                                             </ul>
                                         </li>
                                         <li><a asp-controller="Home" asp-action="About">За нас</a></li>
                                         <li><a asp-controller="Home" asp-action="Contacts">Контакти</a></li>
                                         @if (this.User.IsInRole("Administrator"))
                                         {
-                                            <li><a asp-controller="Home" asp-action="Contacts">Администрация</a></li>
+                                            <li>
+                                                <a href="#">Администрация</a>
+                                                <ul class="submenu">
+                                                    <li><a asp-controller="Administration" asp-action="Messages">Съобщения</a></li>
+                                                    <li><a asp-controller="Brands" asp-action="All">Производители</a></li>
+                                                    <li><a asp-controller="Brands" asp-action="Add">Добави производител</a></li>
+                                                    <li><a asp-controller="Home" asp-action="Index">Артикули</a></li>
+                                                    <li><a asp-controller="Home" asp-action="Index">Добави артикул</a></li>
+                                                    <li><a asp-controller="Home" asp-action="Index">Потребители</a></li>
+                                                    <li><a asp-controller="Home" asp-action="Index">Добави потребител</a></li>
+                                                </ul>
+                                            </li>
                                         }
                                     </ul>
                                 </nav>
