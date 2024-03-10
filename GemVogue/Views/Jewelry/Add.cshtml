@@ -1,4 +1,4 @@
-﻿@model GemVogue.Models.Brands.CreateBrandInputModel
+﻿@model GemVogue.Models.Jewelry.CreateJewelInputModel
 
 <div class="page-notification page-notification2">
     <div class="container">
@@ -7,8 +7,8 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center">
                         <li class="breadcrumb-item">Администрация</li>
-                        <li class="breadcrumb-item"><a asp-action="All">Производители</a></li>
-                        <li class="breadcrumb-item">Добави</li>
+                        <li class="breadcrumb-item"><a asp-action="All">Бижутерия</a></li>
+                        <li class="breadcrumb-item">Добави артикул</li>
                     </ol>
                 </nav>
             </div>
@@ -19,7 +19,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 text-center">
-                <h2 class="contact-title">Създай производител</h2>
+                <h2 class="contact-title">Създай артикул</h2>
             </div>
             <div class="col-6">
                 <form class="form-contact contact_form" method="post"asp-action="Create" id="contactForm" enctype="multipart/form-data">

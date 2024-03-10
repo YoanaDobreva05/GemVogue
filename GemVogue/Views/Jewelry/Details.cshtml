@@ -1,0 +1,44 @@
+﻿@model GemVogue.Models.Jewelry.JewelDetailsOutputModel
+
+<div class="page-notification">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Начало</a></li>
+                        <li class="breadcrumb-item"><a asp-controller="Brands" asp-action="All">Производители</a></li>
+                        <li class="breadcrumb-item">@Model.Name</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="directory-details pt-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="small-tittle mb-20">
+                    <h1>@Model.Name</h1>
+                    <a asp-action="Edit" asp-route-id="@Model.Id"><span class="text-warning">Редактирай</span></a>
+                    
+                </div>
+                <div class="directory-cap mb-40">
+                    <p>@Model.Description</p>
+                </div>
+                
+            </div>
+            <div class="col-lg-4">
+                <div class="map">
+                    <img src="@Model.ImageUrl" alt="">
+                </div>
+                
+                <form class="m-5" method="post" asp-action="Delete" asp-route-id="@Model.Id">
+                    <button type="submit" class="btn btn-danger">Изтрий</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

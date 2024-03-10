@@ -23,7 +23,15 @@ public class BrandsController : Controller
     [HttpGet]
     public IActionResult All()
     {
-        var brands = this.data.Brands.ToList();
+        var brands = this.data.Brands
+            .Select(b => new BrandDetailsOutputModel()
+            {
+                Id = b.Id,
+                Name = b.Name,
+                Description = b.Description,
+                ImageUrl = b.ImageUrl
+            })
+            .ToList();
 
         return View(brands);
     }

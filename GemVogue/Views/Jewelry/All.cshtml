@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GemVogue.Models.Brands.BrandDetailsOutputModel>
+﻿@model IEnumerable<GemVogue.Models.Jewelry.JewelDetailsOutputModel>
 
 <div class="page-notification page-notification2">
     <div class="container">
@@ -7,7 +7,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center">
                         <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Начало</a></li>
-                        <li class="breadcrumb-item">Производители</li>
+                        <li class="breadcrumb-item">Бижута</li>
                     </ol>
                 </nav>
             </div>
@@ -19,7 +19,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h2 class="contact-title">Производители</h2>
+                <h2 class="contact-title">Бижута</h2>
                 @if (this.User.IsInRole("Administrator"))
                 {
                     <a asp-action="Add">
@@ -30,15 +30,15 @@
             <div class="col-lg-12">
                 <div class="popular-items pt-50">
                     <div class="d-flex flex-lg-wrap justify-content-start brands">
-                            @foreach (var brand in Model)
+                            @foreach (var jewel in Model)
                             {
                                 <div class="w-25">
-                                    <a asp-action="Details" asp-route-id="@brand.Id">
+                                    <a asp-action="Details" asp-route-id="@jewel.Id">
                                         <div class="single-popular-items text-center wow fadeInUp border h-100" data-wow-duration="1s" data-wow-delay=".1s">
                                             <div class="popular-img">
-                                                <img src="@brand.ImageUrl" alt="">
+                                                <img src="@jewel.ImageUrl" alt="">
                                                 <div class="img-cap">
-                                                    <span>@brand.Name</span>
+                                                    <span>@jewel.Name</span>
                                                 </div>
                                             </div>
                                         </div>
