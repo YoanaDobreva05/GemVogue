@@ -1,0 +1,41 @@
+﻿@model GemVogue.Models.Users.UserDetailsOutputModel
+
+<div class="page-notification">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Начало</a></li>
+                        <li class="breadcrumb-item">Профил</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="directory-details pt-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="small-tittle mb-20">
+                    <h1>@Model.Name</h1>
+                    
+                    @if (this.User.Identity.IsAuthenticated)
+                    {
+                        <a asp-action="Edit" asp-route-id="@Model.Id"><span class="text-warning">Редактирай</span></a>
+                    }
+                </div>
+                <div class="directory-cap mb-40">
+                    <p><b>Имейл: </b>@Model.Email</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <form class="m-5" method="post" asp-action="Delete" asp-route-id="@Model.Id">
+                    <button type="submit" class="btn btn-danger">Изтрий</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

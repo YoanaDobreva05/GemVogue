@@ -1,4 +1,4 @@
-﻿@model GemVogue.Models.Jewelry.JewelDetailsOutputModel
+﻿@model GemVogue.Models.Users.UserDetailsOutputModel
 
 <div class="page-notification page-notification2">
     <div class="container">
@@ -7,7 +7,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center">
                         <li class="breadcrumb-item">Администрация</li>
-                        <li class="breadcrumb-item"><a asp-action="All">Бижутерия</a></li>
+                        <li class="breadcrumb-item"><a asp-action="All">Потребители</a></li>
                         <li class="breadcrumb-item"><a asp-action="Details" asp-route-id="@Model.Id">@Model.Name</a></li>
                         <li class="breadcrumb-item">Редактирай</li>
                     </ol>
@@ -20,10 +20,10 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 text-center">
-                <h2 class="contact-title">Редактирай артикул</h2>
+                <h2 class="contact-title">Редактирай потребител</h2>
             </div>
             <div class="col-6">
-                <form class="form-contact contact_form" method="post" asp-action="Update" asp-route-id="@Model.Id" id="contactForm" enctype="multipart/form-data">
+                <form class="form-contact contact_form" method="post" asp-action="Update" asp-route-id="@Model.Id" id="contactForm">
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
@@ -32,17 +32,7 @@
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <input class="form-control" asp-for="Image" name="image" id="image" type="file" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Избери файл'" placeholder="Избери файл">
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <textarea class="form-control w-100" asp-for="Description" name="description" value="@Model.Description" id="description" cols="30" rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Въведи описание'" placeholder=" Въведи описание"></textarea>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <textarea class="form-control w-100" asp-for="Material" name="material" value="@Model.Material" id="material" cols="30" rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Въведи материал'" placeholder=" Въведи материал"></textarea>
+                                <input class="form-control w-100" asp-for="Email" name="email" value="@Model.Email" id="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Въведи имейл'" placeholder=" Въведи имейл"></input>
                             </div>
                         </div>
                     </div>

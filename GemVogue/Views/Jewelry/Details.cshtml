@@ -1,4 +1,5 @@
-﻿@model GemVogue.Models.Jewelry.JewelDetailsOutputModel
+﻿@using GemVogue.Data.Enums
+@model GemVogue.Models.Jewelry.JewelDetailsOutputModel
 
 <div class="page-notification">
     <div class="container">
@@ -22,14 +23,32 @@
             <div class="col-lg-8">
                 <div class="small-tittle mb-20">
                     <h1>@Model.Name</h1>
+                @if (this.User.IsInRole("Administrator"))
+                {
                     <a asp-action="Edit" asp-route-id="@Model.Id"><span class="text-warning">Редактирай</span></a>
-                    
+                }
                 </div>
                 <div class="directory-cap mb-40">
                     <p>@Model.Description</p>
                     
-                    <p><b>Производител: </b>@Model.Brand.Name</p>
-                    <p><b>Категория: </b>@Model.Type</p>
+                    <p><b>Производител: </b><a class="text-dark" asp-controller="Brands" asp-action="Details" asp-route-id="@Model.BrandId">@Model.Brand.Name</a></p>
+                    @if (Model.Type == JewelryType.Necklace)
+                    {
+                        <p><b>Категория: </b><a class="text-dark" asp-controller="Jewelry" asp-action="Necklaces">Колиета</a></p>
+                    }
+                    @if (Model.Type == JewelryType.Ring)
+                    {
+                        <p><b>Категория: </b><a class="text-dark" asp-controller="Jewelry" asp-action="Rings">Пръстени</a></p>
+                    }
+                    @if (Model.Type == JewelryType.Earring)
+                    {
+                        <p><b>Категория: </b><a class="text-dark" asp-controller="Jewelry" asp-action="Earrings">Обеци</a></p>
+                    }
+                    @if (Model.Type == JewelryType.Bracelet)
+                    {
+                        <p><b>Категория: </b><a class="text-dark" asp-controller="Jewelry" asp-action="Bracelets">Гривни</a></p>
+                    }
+                    
                     <p><b>Дата на публикуване: </b>@Model.CreatedOn.ToString("dd.MM.yyyy г.") (Качено преди @((DateTime.Now.Date - Model.CreatedOn.Date).Days) дни)</p>
                 </div>
             </div>
@@ -37,10 +56,12 @@
                 <div class="map">
                     <img src="@Model.ImageUrl" alt="">
                 </div>
-                
-                <form class="m-5" method="post" asp-action="Delete" asp-route-id="@Model.Id">
-                    <button type="submit" class="btn btn-danger">Изтрий</button>
-                </form>
+                @if (this.User.IsInRole("Administrator"))
+                {
+                    <form class="m-5" method="post" asp-action="Delete" asp-route-id="@Model.Id">
+                        <button type="submit" class="btn btn-danger">Изтрий</button>
+                    </form>
+                }
             </div>
         </div>
     </div>

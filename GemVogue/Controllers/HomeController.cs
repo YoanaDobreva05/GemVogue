@@ -9,6 +9,7 @@ namespace GemVogue.Controllers
     using Models.Brands;
     using Models.Jewelry;
     using Models.Messages;
+    using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
     public class HomeController : Controller
     {
@@ -71,6 +72,40 @@ namespace GemVogue.Controllers
             this.data.SaveChanges();
 
             return RedirectToAction("Contacts");
+        }
+
+        [HttpGet]
+        public IActionResult Search(string query)
+        {
+            var model = new SearchOutputModel();
+
+            model.Brands = this.data.Brands
+                .Where(b => b.Name.Contains(query))
+                .Select(b => new BrandDetailsOutputModel()
+                {
+                    Id = b.Id,
+                    Name = b.Name,
+                    Description = b.Description,
+                    ImageUrl = b.ImageUrl
+                })
+                .ToList();
+
+            model.Jewels = this.data.Jewelry
+                .Where(j => j.Name.Contains(query))
+                .Select(j => new JewelDetailsOutputModel()
+                {
+                    Id = j.Id,
+                    Name = j.Name,
+                    Description = j.Description,
+                    Material = j.Material,
+                    CreatedOn = j.CreatedOn,
+                    Type = j.Type,
+                    ImageUrl = j.ImageUrl,
+                    BrandId = j.BrandId
+                })
+                .ToList();
+
+            return View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

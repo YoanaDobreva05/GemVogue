@@ -22,8 +22,10 @@
             <div class="col-lg-8">
                 <div class="small-tittle mb-20">
                     <h1>@Model.Name</h1>
+                @if (this.User.IsInRole("Administrator"))
+                {
                     <a asp-action="Edit" asp-route-id="@Model.Id"><span class="text-warning">Редактирай</span></a>
-                    
+                }
                 </div>
                 <div class="directory-cap mb-40">
                     <p>@Model.Description</p>
@@ -52,10 +54,12 @@
                 <div class="map">
                     <img src="@Model.ImageUrl" alt="">
                 </div>
-                
+            @if (this.User.IsInRole("Administrator"))
+            {
                 <form class="m-5" method="post" asp-action="Delete" asp-route-id="@Model.Id">
                     <button type="submit" class="btn btn-danger">Изтрий</button>
                 </form>
+            }
             </div>
         </div>
     </div>

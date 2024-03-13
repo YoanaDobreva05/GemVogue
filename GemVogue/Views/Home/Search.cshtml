@@ -1,0 +1,69 @@
+﻿@model GemVogue.Models.SearchOutputModel
+
+@if (Model.Jewels.Any())
+{
+    <section class="contact-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="contact-title">Бижутерия</h2>
+                </div>
+                <div class="col-lg-12">
+                    <div class="popular-items pt-50">
+                        <div class="d-flex flex-lg-wrap justify-content-start brands">
+                            @foreach (var jewel in Model.Jewels)
+                            {
+                                <div class="w-25">
+                                    <a asp-controller="Jewelry" asp-action="Details" asp-route-id="@jewel.Id">
+                                        <div class="single-popular-items text-center wow fadeInUp border h-100" data-wow-duration="1s" data-wow-delay=".1s">
+                                            <div class="popular-img">
+                                                <img src="@jewel.ImageUrl" alt="">
+                                                <div class="img-cap">
+                                                    <span>@jewel.Name</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+@if (Model.Brands.Any())
+{
+    <section class="contact-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="contact-title">Производители</h2>
+                </div>
+                <div class="col-lg-12">
+                    <div class="popular-items pt-50">
+                        <div class="d-flex flex-lg-wrap justify-content-start brands">
+                            @foreach (var brand in Model.Brands)
+                            {
+                                <div class="w-25">
+                                    <a asp-controller="Brands" asp-action="Details" asp-route-id="@brand.Id">
+                                        <div class="single-popular-items text-center wow fadeInUp border h-100" data-wow-duration="1s" data-wow-delay=".1s">
+                                            <div class="popular-img">
+                                                <img src="@brand.ImageUrl" alt="">
+                                                <div class="img-cap">
+                                                    <span>@brand.Name</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

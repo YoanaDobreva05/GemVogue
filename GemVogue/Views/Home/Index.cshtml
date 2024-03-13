@@ -49,9 +49,12 @@
                         <div class="single-new-arrival mb-50 text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
                             <div class="popular-img">
                                 <img src="@jewel.ImageUrl" alt="">
-                                <div class="favorit-items">
-                                    <i class="fa fa-heart"></i>
-                                </div>
+                                @if (this.User.Identity.IsAuthenticated)
+                                {
+                                    <div class="favorit-items">
+                                        <i class="fa fa-heart"></i>
+                                    </div>
+                                }
                             </div>
                             <a asp-controller="Jewelry" asp-action="Details" asp-route-id="@jewel.Id">
                                 <div class="popular-caption">

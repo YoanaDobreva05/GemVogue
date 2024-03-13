@@ -1,6 +1,7 @@
 ﻿namespace GemVogue.Controllers;
 
 using Data;
+using Data.Enums;
 using GemVogue.Data.Models;
 using Models.Brands;
 using Microsoft.AspNetCore.Authorization;
@@ -23,21 +24,49 @@ public class JewelryController : Controller
     [HttpGet]
     public IActionResult All()
     {
-        var jewelry = this.data.Jewelry
-            .Select(j => new JewelDetailsOutputModel()
-            {
-                Id = j.Id,
-                Name = j.Name,
-                Description = j.Description,
-                Material = j.Material,
-                CreatedOn = j.CreatedOn,
-                Type = j.Type,
-                ImageUrl = j.ImageUrl,
-                BrandId = j.BrandId
-            })
-            .ToList();
+        var jewelry = this.GetJewelry();
 
         return View(jewelry);
+    }
+
+    [HttpGet]
+    public IActionResult Necklaces()
+    {
+        var jewelry = this
+            .GetJewelry()
+            .Where(j => j.Type == JewelryType.Necklace);
+
+        return View("All", jewelry);
+    }
+
+    [HttpGet]
+    public IActionResult Rings()
+    {
+        var jewelry = this
+            .GetJewelry()
+            .Where(j => j.Type == JewelryType.Ring);
+
+        return View("All", jewelry);
+    }
+
+    [HttpGet]
+    public IActionResult Earrings()
+    {
+        var jewelry = this
+            .GetJewelry()
+            .Where(j => j.Type == JewelryType.Earring);
+
+        return View("All", jewelry);
+    }
+
+    [HttpGet]
+    public IActionResult Bracelets()
+    {
+        var jewelry = this
+            .GetJewelry()
+            .Where(j => j.Type == JewelryType.Bracelet);
+
+        return View("All", jewelry);
     }
 
     [HttpGet]
@@ -144,13 +173,14 @@ public class JewelryController : Controller
 
     [HttpPost]
     [Authorize(Roles = "Administrator")]
-    public IActionResult Update(int id, BrandDetailsOutputModel input)
+    public IActionResult Update(int id, JewelDetailsOutputModel input)
     {
-        var brand = this.data.Brands
+        var jewel = this.data.Jewelry
             .Single(b => b.Id == id);
 
-        brand.Name = input.Name;
-        brand.Description = input.Description;
+        jewel.Name = input.Name;
+        jewel.Description = input.Description;
+        jewel.Material = input.Material;
 
         if (input.Image != null)
         {
@@ -163,7 +193,7 @@ public class JewelryController : Controller
 
             input.Image.CopyTo(fileStream);
 
-            brand.ImageUrl = @"\Images\" + input.Image.FileName;
+            jewel.ImageUrl = @"\Images\" + input.Image.FileName;
         }
 
         this.data.SaveChanges();
@@ -175,11 +205,26 @@ public class JewelryController : Controller
     [Authorize(Roles = "Administrator")]
     public IActionResult Delete(int id)
     {
-        var brand = this.data.Brands.Single(b => b.Id == id);
+        var jewel = this.data.Jewelry.Single(j => j.Id == id);
 
-        this.data.Brands.Remove(brand);
+        this.data.Jewelry.Remove(jewel);
         this.data.SaveChanges();
 
         return RedirectToAction("All");
     }
+
+    private IEnumerable<JewelDetailsOutputModel> GetJewelry() 
+        => this.data.Jewelry
+            .Select(j => new JewelDetailsOutputModel()
+            {
+                Id = j.Id,
+                Name = j.Name,
+                Description = j.Description,
+                Material = j.Material,
+                CreatedOn = j.CreatedOn,
+                Type = j.Type,
+                ImageUrl = j.ImageUrl,
+                BrandId = j.BrandId
+            })
+            .ToList();
 }
