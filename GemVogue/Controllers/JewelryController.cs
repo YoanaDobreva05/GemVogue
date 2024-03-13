@@ -43,7 +43,7 @@ public class JewelryController : Controller
     [HttpGet]
     public IActionResult Details(int id)
     {
-        var brand = this.data.Jewelry
+        var jewel = this.data.Jewelry
             .Where(j => j.Id == id)
             .Select(j => new JewelDetailsOutputModel()
             {
@@ -58,13 +58,38 @@ public class JewelryController : Controller
             })
             .FirstOrDefault();
 
-        return View(brand);
+        jewel.Brand = this.data.Brands
+            .Where(b => b.Id == jewel.BrandId)
+            .Select(b => new BrandDetailsOutputModel()
+            {
+                Id = b.Id,
+                Name = b.Name,
+                Description = b.Description,
+                ImageUrl = b.ImageUrl
+            })
+            .FirstOrDefault();
+
+        return View(jewel);
     }
 
     [HttpGet]
     [Authorize(Roles = "Administrator")]
     public IActionResult Add()
-        => View();
+    {
+        var model = new CreateJewelInputModel();
+
+        model.Brands = this.data.Brands
+            .Select(b => new BrandDetailsOutputModel()
+            {
+                Id = b.Id,
+                Name = b.Name,
+                Description = b.Description,
+                ImageUrl = b.ImageUrl,
+            })
+            .ToList();
+
+        return View(model);
+    }
 
     [HttpPost]
     [Authorize(Roles = "Administrator")]
@@ -79,14 +104,17 @@ public class JewelryController : Controller
 
         input.Image.CopyTo(fileStream);
 
-        var brand = new Brand()
+        var jewel = new Jewel()
         {
             Name = input.Name,
             Description = input.Description,
+            Material = input.Material,
+            Type = input.Type,
             ImageUrl = @"\Images\" + input.Image.FileName,
+            BrandId = input.BrandId
         };
 
-        this.data.Add(brand);
+        this.data.Add(jewel);
         this.data.SaveChanges();
 
         return RedirectToAction("All");
@@ -96,18 +124,22 @@ public class JewelryController : Controller
     [Authorize(Roles = "Administrator")]
     public IActionResult Edit(int id)
     {
-        var brand = this.data.Brands
+        var jewel = this.data.Jewelry
             .Where(b => b.Id == id)
-            .Select(b => new BrandDetailsOutputModel()
+            .Select(j => new JewelDetailsOutputModel()
             {
-                Id = b.Id,
-                Name = b.Name,
-                Description = b.Description,
-                ImageUrl = b.ImageUrl
+                Id = j.Id,
+                Name = j.Name,
+                Description = j.Description,
+                Material = j.Material,
+                CreatedOn = j.CreatedOn,
+                Type = j.Type,
+                ImageUrl = j.ImageUrl,
+                BrandId = j.BrandId
             })
             .FirstOrDefault();
 
-        return View(brand);
+        return View(jewel);
     }
 
     [HttpPost]

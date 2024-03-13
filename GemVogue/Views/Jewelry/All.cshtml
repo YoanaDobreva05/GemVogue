@@ -7,7 +7,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center">
                         <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Начало</a></li>
-                        <li class="breadcrumb-item">Бижута</li>
+                        <li class="breadcrumb-item">Бижутерия</li>
                     </ol>
                 </nav>
             </div>
@@ -19,7 +19,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h2 class="contact-title">Бижута</h2>
+                <h2 class="contact-title">Бижутерия</h2>
                 @if (this.User.IsInRole("Administrator"))
                 {
                     <a asp-action="Add">

@@ -1,5 +1,6 @@
 ﻿namespace GemVogue.Models.Jewelry;
 
+using Brands;
 using Data.Enums;
 using GemVogue.Data.Models;
 
@@ -19,7 +20,9 @@ public class JewelDetailsOutputModel
 
     public string ImageUrl { get; set; }
 
+    public IFormFile? Image { get; set; }
+
     public int BrandId { get; set; }
 
-    public Brand Brand { get; set; }
+    public BrandDetailsOutputModel Brand { get; set; }
 }

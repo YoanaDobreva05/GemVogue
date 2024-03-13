@@ -1,6 +1,7 @@
 ﻿namespace GemVogue.Models.Brands;
 
 using GemVogue.Data.Models;
+using Jewelry;
 
 public class BrandDetailsOutputModel
 {
@@ -14,5 +15,5 @@ public class BrandDetailsOutputModel
 
     public IFormFile? Image { get; set; }
 
-    public List<Jewel> Jewels { get; set; } = new ();
+    public List<JewelDetailsOutputModel> Jewels { get; set; } = new ();
 }

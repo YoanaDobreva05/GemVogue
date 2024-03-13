@@ -7,7 +7,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center">
                         <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Начало</a></li>
-                        <li class="breadcrumb-item"><a asp-controller="Brands" asp-action="All">Производители</a></li>
+                        <li class="breadcrumb-item"><a asp-action="All">Бижутерия</a></li>
                         <li class="breadcrumb-item">@Model.Name</li>
                     </ol>
                 </nav>
@@ -27,8 +27,11 @@
                 </div>
                 <div class="directory-cap mb-40">
                     <p>@Model.Description</p>
+                    
+                    <p><b>Производител: </b>@Model.Brand.Name</p>
+                    <p><b>Категория: </b>@Model.Type</p>
+                    <p><b>Дата на публикуване: </b>@Model.CreatedOn.ToString("dd.MM.yyyy г.") (Качено преди @((DateTime.Now.Date - Model.CreatedOn.Date).Days) дни)</p>
                 </div>
-                
             </div>
             <div class="col-lg-4">
                 <div class="map">

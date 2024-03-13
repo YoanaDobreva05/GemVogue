@@ -50,6 +50,21 @@ public class BrandsController : Controller
             })
             .FirstOrDefault();
 
+        brand.Jewels = this.data.Jewelry
+            .Where(j => j.BrandId == brand.Id)
+            .Select(j => new JewelDetailsOutputModel()
+            {
+                Id = j.Id,
+                Name = j.Name,
+                Description = j.Description,
+                Material = j.Material,
+                CreatedOn = j.CreatedOn,
+                Type = j.Type,
+                ImageUrl = j.ImageUrl,
+                BrandId = j.BrandId
+            })
+            .ToList();
+
         return View(brand);
     }
 

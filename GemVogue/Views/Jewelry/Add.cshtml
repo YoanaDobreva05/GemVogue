@@ -29,14 +29,44 @@
                                 <input class="form-control valid" asp-for="Name" name="name" id="name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Въведи име'" placeholder="Въведи име">
                             </div>
                         </div>
+                        
+                        <div class="col-12">
+                            <div class="form-group">
+                                <input class="form-control w-100" asp-for="Material" name="material" id="material" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Въведи материал'" placeholder=" Въведи материал">
+                            </div>
+                        </div>
+                        
+                        <div class="col-12">
+                            <div class="form-group">
+                                <textarea class="form-control w-100" asp-for="Description" name="description" id="description" cols="30" rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Въведи описание'" placeholder=" Въведи описание"></textarea>
+                            </div>
+                        </div>
+
                         <div class="col-12">
                             <div class="form-group">
                                 <input class="form-control" asp-for="Image" name="image" id="image" type="file" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Избери файл'" placeholder="Избери файл">
                             </div>
                         </div>
-                        <div class="col-12">
+
+                        <div class="col-6">
                             <div class="form-group">
-                                <textarea class="form-control w-100" asp-for="Description" name="description" id="description" cols="30" rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Въведи описание'" placeholder=" Въведи описание"></textarea>
+                                <select class="form-control w-100" asp-for="Type" name="type" id="type" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Въведи категория'" placeholder=" Въведи категория">
+                                    <option value="1">Колие</option>
+                                    <option value="2">Пръстен</option>
+                                    <option value="3">Гривна</option>
+                                    <option value="4">Обеци</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="col-6">
+                            <div class="form-group">
+                                <select class="form-control w-100" asp-for="BrandId" name="brandId" id="brandId" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Въведи производител'" placeholder=" Въведи производител">
+                                    @foreach (var brand in Model.Brands)
+                                    {
+                                        <option value="@brand.Id">@brand.Name</option>
+                                    }
+                                </select>
                             </div>
                         </div>
                     </div>

@@ -6,6 +6,8 @@ namespace GemVogue.Controllers
 {
     using Data;
     using Data.Models;
+    using Models.Brands;
+    using Models.Jewelry;
     using Models.Messages;
 
     public class HomeController : Controller
@@ -17,8 +19,36 @@ namespace GemVogue.Controllers
             this.data = data;
         }
 
-        public IActionResult Index() 
-            => View();
+        public IActionResult Index()
+        {
+            var lastFour = this.data.Jewelry
+                .Select(j => new JewelDetailsOutputModel()
+                {
+                    Id = j.Id,
+                    Name = j.Name,
+                    Description = j.Description,
+                    Material = j.Material,
+                    CreatedOn = j.CreatedOn,
+                    Type = j.Type,
+                    ImageUrl = j.ImageUrl,
+                    BrandId = j.BrandId,
+                    Brand = this.data.Brands
+                        .Where(b => b.Id == j.BrandId)
+                        .Select(b => new BrandDetailsOutputModel()
+                        {
+                            Id = b.Id,
+                            Name = b.Name,
+                            Description = b.Description,
+                            ImageUrl = b.ImageUrl
+                        })
+                        .FirstOrDefault()
+                })
+                .OrderByDescending(j => j.CreatedOn)
+                .Take(4)
+                .ToList();
+
+            return View(lastFour);
+        }
 
         public IActionResult About() 
             => View();
