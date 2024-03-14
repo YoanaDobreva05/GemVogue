@@ -7,6 +7,7 @@ using Models.Brands;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models.Jewelry;
+using System.Security.Claims;
 
 public class JewelryController : Controller
 {
@@ -27,6 +28,65 @@ public class JewelryController : Controller
         var jewelry = this.GetJewelry();
 
         return View(jewelry);
+    }
+
+    [HttpGet]
+    [Authorize]
+    public IActionResult Favorites()
+    {
+        var favorites = this.data.Favorites
+            .Where(f => f.UserId == this.User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+        var jewelry = new List<JewelDetailsOutputModel>();
+
+        foreach (var favorite in favorites)
+        {
+            jewelry.Add(this.data.Jewelry
+                .Where(j => j.Id == favorite.JewelId)
+                .Select(j => new JewelDetailsOutputModel()
+                {
+                    Id = j.Id,
+                    Name = j.Name,
+                    Description = j.Description,
+                    Material = j.Material,
+                    CreatedOn = j.CreatedOn,
+                    Type = j.Type,
+                    ImageUrl = j.ImageUrl,
+                    BrandId = j.BrandId
+                })
+                .FirstOrDefault());
+        }
+
+        return View(jewelry);
+    }
+
+    [HttpPost]
+    [Authorize]
+    public IActionResult AddToFavorites(int id)
+    {
+        var favorite = new Favorite()
+        {
+            UserId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value,
+            JewelId = id
+        };
+
+        this.data.Add(favorite);
+        this.data.SaveChanges();
+
+        return RedirectToAction("Favorites");
+    }
+
+    [HttpPost]
+    [Authorize]
+    public IActionResult RemoveFromFavorites(int id)
+    {
+        var favorite = this.data.Favorites
+            .FirstOrDefault(f => f.UserId == this.User.FindFirst(ClaimTypes.NameIdentifier).Value && f.JewelId == id);
+
+        this.data.Remove(favorite);
+        this.data.SaveChanges();
+
+        return RedirectToAction("Favorites");
     }
 
     [HttpGet]
@@ -97,6 +157,11 @@ public class JewelryController : Controller
                 ImageUrl = b.ImageUrl
             })
             .FirstOrDefault();
+
+        if (this.User.Identity.IsAuthenticated)
+        {
+            jewel.IsFavorite = this.data.Favorites.Any(j => j.JewelId == id && j.UserId == this.User.FindFirst(ClaimTypes.NameIdentifier).Value);
+        }
 
         return View(jewel);
     }

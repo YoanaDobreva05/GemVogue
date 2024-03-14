@@ -82,7 +82,7 @@
                                                     <li><a asp-controller="Jewelry" asp-action="All">Артикули</a></li>
                                                     <li><a asp-controller="Jewelry" asp-action="Add">Добави артикул</a></li>
                                                     <li><a asp-controller="Users" asp-action="All">Потребители</a></li>
-                                                    <li><a asp-controller="Home" asp-action="Index">Добави потребител</a></li>
+                                                    <li><a asp-controller="Users" asp-action="Add">Добави потребител</a></li>
                                                 </ul>
                                             </li>
                                         }
@@ -106,10 +106,12 @@
                                     <li>
                                         @if (this.User.Identity.IsAuthenticated)
                                         {
-                                            <div class="card-stor">
-                                                <i class="fa fa-heart"></i>
-                                                <span>0</span>
-                                            </div>
+                                            <a asp-controller="Jewelry" asp-action="Favorites">
+                                                <div class="card-stor">
+                                                    <span>Любими</span>
+                                                    <i class="fa fa-heart"></i>
+                                                </div>
+                                            </a>
                                         }
                                         else
                                         {
@@ -123,9 +125,11 @@
                                     @if (this.User.Identity.IsAuthenticated)
                                     {
                                         <li>
-                                            <form method="post" asp-area="Identity" asp-page="/Account/Logout" >
-                                                <button class="text-uppercase text-dark btn-link more-btn" type="submit">Излез</button>
-                                            </form>
+                                            <div class="nav-search search-switch">
+                                                <form method="post" asp-area="Identity" asp-page="/Account/Logout">
+                                                    <button class="text-uppercase text-dark btn-link more-btn" type="submit">Излез</button>
+                                                </form>
+                                            </div>
                                         </li>
                                     }
                                 </ul>

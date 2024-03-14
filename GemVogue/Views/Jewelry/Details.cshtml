@@ -51,6 +51,23 @@
                     
                     <p><b>Дата на публикуване: </b>@Model.CreatedOn.ToString("dd.MM.yyyy г.") (Качено преди @((DateTime.Now.Date - Model.CreatedOn.Date).Days) дни)</p>
                 </div>
+                
+                @if (this.User.Identity.IsAuthenticated)
+                {
+                    @if (!Model.IsFavorite)
+                    {
+                        <form class="m-5" method="post" asp-action="AddToFavorites" asp-route-id="@Model.Id">
+                            <button type="submit" class="btn btn-danger">Добави в любими</button>
+                        </form>
+                    }
+
+                    @if (Model.IsFavorite)
+                    {
+                        <form class="m-5" method="post" asp-action="RemoveFromFavorites" asp-route-id="@Model.Id">
+                            <button type="submit" class="btn btn-danger">Премахни от любими</button>
+                        </form>
+                    }
+                }
             </div>
             <div class="col-lg-4">
                 <div class="map">

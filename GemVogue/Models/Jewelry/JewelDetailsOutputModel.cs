@@ -22,6 +22,8 @@ public class JewelDetailsOutputModel
 
     public IFormFile? Image { get; set; }
 
+    public bool IsFavorite { get; set; } = false;
+
     public int BrandId { get; set; }
 
     public BrandDetailsOutputModel Brand { get; set; }

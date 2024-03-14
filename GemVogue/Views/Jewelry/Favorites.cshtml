@@ -1,0 +1,49 @@
+﻿@model IEnumerable<GemVogue.Models.Jewelry.JewelDetailsOutputModel>
+
+<div class="page-notification page-notification2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Начало</a></li>
+                        <li class="breadcrumb-item"><a asp-action="All">Бижутерия</a></li>
+                        <li class="breadcrumb-item">Любими</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="contact-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="contact-title">Любими</h2>
+            </div>
+            <div class="col-lg-12">
+                <div class="popular-items pt-50">
+                    <div class="d-flex flex-lg-wrap justify-content-start brands">
+                            @foreach (var jewel in Model)
+                            {
+                                <div class="w-25">
+                                    <a asp-action="Details" asp-route-id="@jewel.Id">
+                                        <div class="single-popular-items text-center wow fadeInUp border h-100" data-wow-duration="1s" data-wow-delay=".1s">
+                                            <div class="popular-img">
+                                                <img src="@jewel.ImageUrl" alt="">
+
+                                                <div class="img-cap">
+                                                    <span>@jewel.Name</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -3,16 +3,20 @@
 using Data;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using Data.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Models.Users;
 
 public class UsersController : Controller
 {
     private readonly GemVogueDbContext data;
+    private readonly UserManager<User> userManager;
 
-    public UsersController(GemVogueDbContext data)
+    public UsersController(GemVogueDbContext data, UserManager<User> userManager)
     {
         this.data = data;
+        this.userManager = userManager;
     }
 
     [HttpGet]
@@ -94,5 +98,26 @@ public class UsersController : Controller
         this.data.SaveChanges();
 
         return RedirectToAction("Index", "Home");
+    }
+
+    [HttpGet]
+    [Authorize(Roles = "Administrator")]
+    public IActionResult Add()
+        => View();
+
+    [HttpPost]
+    [Authorize(Roles = "Administrator")]
+    public async Task<IActionResult> Create(UserInputModel input)
+    {
+        var user = new User
+        {
+            Name = input.Name,
+            UserName = input.Email,
+            Email = input.Email,
+        };
+
+        await userManager.CreateAsync(user, input.Password);
+
+        return RedirectToAction("All");
     }
 }
