@@ -37,10 +37,10 @@
                                 <th scope="row">@user.Id</th>
                                 <td>@user.Name</td>
                                 <td>@user.Email</td>
-                                <td>
-                                    <a class="btn btn-danger" asp-action="Edit" asp-route-id="@user.Id">Редактирай</a>
+                                <td class="d-flex gap-1">
+                                    <a class="genric-btn custom-btn circle mr-15" asp-action="Edit" asp-route-id="@user.Id">Редактирай</a>
                                     <form method="post" asp-action="Delete" asp-route-id="@user.Id">
-                                        <button type="submit" class="btn btn-danger">Изтрий</button>
+                                        <button type="submit" class="genric-btn custom-btn circle">Изтрий</button>
                                     </form>
                                 </td>
                             </tr>

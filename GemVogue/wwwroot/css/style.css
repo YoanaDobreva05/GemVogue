@@ -3087,33 +3087,7 @@ hr {
     justify-content: center
 }
 
-.full-wrapper {
-    margin: 0 35px
-}
 
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
-    .full-wrapper {
-        margin: 0 15px
-    }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-    .full-wrapper {
-        margin: 0 0px
-    }
-}
-
-@media only screen and (min-width: 576px) and (max-width: 767px) {
-    .full-wrapper {
-        margin: 0 0px
-    }
-}
-
-@media (max-width: 575px) {
-    .full-wrapper {
-        margin: 0 0px
-    }
-}
 
 .slider-height {
     min-height: 900px;
@@ -7341,4 +7315,21 @@ b, sup, sub, u, del {
 
 .brands {
     gap: 40px;
+}
+.flex-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100vh !important;
+}
+.w-21{
+    width:21% !important;
+}
+.custom-btn {
+    background: #9F78FF !important;
+    color:white !important;
+    border:0 !important;
+}
+.font-size-16 {
+    font-size: 16px !important;
+    font-family: "Poppins", sans-serif !important;
 }

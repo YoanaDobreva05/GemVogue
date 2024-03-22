@@ -6676,3 +6676,9 @@ b, sup, sub, u, del {
 .switch-wrap {
     margin-bottom: 10px
 }
+
+.flex-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100vh !important;
+}

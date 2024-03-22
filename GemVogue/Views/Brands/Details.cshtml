@@ -28,7 +28,7 @@
                 }
                 </div>
                 <div class="directory-cap mb-40">
-                    <p>@Model.Description</p>
+                    <p class="font-size-16 text-justify">@Model.Description</p>
                 </div>
                 @if (Model.Jewels.Any())
                 {
@@ -43,7 +43,7 @@
                         {
                             <div class="col-lg-6">
                                 <a asp-controller="Jewelry" asp-action="Details" asp-route-id="@jewel.Id">
-                                    <img src="@jewel.ImageUrl" class="mb-30" alt="">
+                                    <img src="@jewel.ImageUrl" class="mb-30" alt="" style="width:60%">
                                 </a>
                             </div>
                         }
@@ -52,12 +52,12 @@
             </div>
             <div class="col-lg-4">
                 <div class="map">
-                    <img src="@Model.ImageUrl" alt="">
+                    <img src="@Model.ImageUrl" alt="" style="width:85%">
                 </div>
             @if (this.User.IsInRole("Administrator"))
             {
                 <form class="m-5" method="post" asp-action="Delete" asp-route-id="@Model.Id">
-                    <button type="submit" class="btn btn-danger">Изтрий</button>
+                    <button type="submit" class="btn">Изтрий</button>
                 </form>
             }
             </div>

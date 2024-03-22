@@ -32,14 +32,14 @@
                     <div class="d-flex flex-lg-wrap justify-content-start brands">
                             @foreach (var jewel in Model)
                             {
-                                <div class="w-25">
+                                <div class="w-21">
                                     <a asp-action="Details" asp-route-id="@jewel.Id">
                                         <div class="single-popular-items text-center wow fadeInUp border h-100" data-wow-duration="1s" data-wow-delay=".1s">
                                             <div class="popular-img">
                                                 <img src="@jewel.ImageUrl" alt="">
 
                                                 <div class="img-cap">
-                                                    <span>@jewel.Name</span>
+                                                    <span class="font-size-16">@jewel.Name</span>
                                                 </div>
                                             </div>
                                         </div>

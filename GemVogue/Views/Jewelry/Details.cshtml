@@ -29,7 +29,7 @@
                 }
                 </div>
                 <div class="directory-cap mb-40">
-                    <p>@Model.Description</p>
+                    <p class="text-justify">@Model.Description</p>
                     
                     <p><b>Производител: </b><a class="text-dark" asp-controller="Brands" asp-action="Details" asp-route-id="@Model.BrandId">@Model.Brand.Name</a></p>
                     @if (Model.Type == JewelryType.Necklace)
@@ -57,14 +57,14 @@
                     @if (!Model.IsFavorite)
                     {
                         <form class="m-5" method="post" asp-action="AddToFavorites" asp-route-id="@Model.Id">
-                            <button type="submit" class="btn btn-danger">Добави в любими</button>
+                            <button type="submit" class="btn ">Добави в любими</button>
                         </form>
                     }
 
                     @if (Model.IsFavorite)
                     {
                         <form class="m-5" method="post" asp-action="RemoveFromFavorites" asp-route-id="@Model.Id">
-                            <button type="submit" class="btn btn-danger">Премахни от любими</button>
+                            <button type="submit" class="btn ">Премахни от любими</button>
                         </form>
                     }
                 }
@@ -76,7 +76,7 @@
                 @if (this.User.IsInRole("Administrator"))
                 {
                     <form class="m-5" method="post" asp-action="Delete" asp-route-id="@Model.Id">
-                        <button type="submit" class="btn btn-danger">Изтрий</button>
+                        <button type="submit" class="btn ">Изтрий</button>
                     </form>
                 }
             </div>
